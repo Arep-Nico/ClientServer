@@ -61,9 +61,9 @@ public class App
 
     private static void Ejercicio3(String[] args) {
         try {
-            EchoServer.main(args);
+            SqrtServer.main(args);
         } catch (IOException e) {
-            //TODO: handle exception
+            System.out.println(e);
         }
     }
 }

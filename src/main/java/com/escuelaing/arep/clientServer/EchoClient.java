@@ -32,10 +32,13 @@ public class EchoClient {
         }
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String input;
+        String input, output;
         while ((input = reader.readLine()) != null) {
             out.println(input);
-            System.out.println(in.readLine());
+            output = in.readLine();
+            System.out.println(output);
+            if (output.equals("Respuesta: Bye.")) 
+                break;
         }
 
         out.close();

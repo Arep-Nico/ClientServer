@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class EchoServer {
+public class SqrtServer {
     public static void main(final String[] args) throws IOException {
         ServerSocket serverSocket = null;
         System.out.println("Server up");
@@ -30,7 +30,14 @@ public class EchoServer {
         String inputLine, outputLine;
         while ((inputLine = in.readLine()) != null) {
             System.out.println("Mensaje: " + inputLine);
-            outputLine = "Respuesta: " + inputLine;
+            try {
+                outputLine = "Respuesta: " + Math.pow(Double.parseDouble(inputLine), 2);
+            } catch (NumberFormatException e) {
+                if (inputLine.equals("Bye.")) 
+                    outputLine = "Respuesta: " + inputLine;
+                else
+                    outputLine = "Respuesta: " + inputLine + " is not a number";
+            }
             out.println(outputLine);
             if (outputLine.equals("Respuesta: Bye.")) 
                 break;
