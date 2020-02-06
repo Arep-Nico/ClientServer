@@ -3,11 +3,14 @@ package com.escuelaing.arep.clientServer;
 import java.net.*;
 import java.util.Date;
 import java.io.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 public class HttpServer {
 
    public static final String USERPATH = System.getProperty("user.dir");
    public static final String SEPARATOR = System.getProperty("file.separator");
+
    public static void main(String[] args) throws IOException {
       while (true) {
          ServerSocket serverSocket = null;
@@ -51,41 +54,49 @@ public class HttpServer {
    }
 
    private static void returnFile(String fileName, PrintWriter out) {
-      String path = HttpServer.USERPATH + HttpServer.SEPARATOR + "src" + HttpServer.SEPARATOR + "main"
-            + HttpServer.SEPARATOR + "java" + HttpServer.SEPARATOR + "resources" + HttpServer.SEPARATOR + fileName;
 
-      System.out.println("Request: " + fileName + " " + fileName.endsWith(" "));
+      String path = HttpServer.USERPATH + HttpServer.SEPARATOR + "src" + HttpServer.SEPARATOR + "main"
+            + HttpServer.SEPARATOR + "java" + HttpServer.SEPARATOR + "resources" + HttpServer.SEPARATOR + fileName.substring(0, fileName.length()-1);
+
+      System.out.println("Request: " + fileName);
       try {
          File file = new File(path);
          BufferedReader br = new BufferedReader(new FileReader(file));
-
+         String contentType = "";
          out.println("HTTP/1.1 200 OK");         
          
          if (fileName.endsWith(".html ") || fileName.endsWith(".htm "))
-            out.println("Content-type: " + "text/html");
+            contentType =  "text/html";
          else if (fileName.endsWith(".css "))
-            out.println("Content-type: " + "text/css");
+            contentType =  "text/css";
          else if (fileName.endsWith(".ico "))
-            out.println("Content-type: " + "image/x-icon");
+            contentType =  "image/x-icon";
          else if (fileName.endsWith(".png "))
-            out.println("Content-type: " + "image/png");
+            contentType =  "image/png";
          else if (fileName.endsWith(".jpeg ") || fileName.endsWith(".jpg "))
-            out.println("Content-type: " + "image/jpeg");
+            contentType =  "image/jpeg";
          else if (fileName.endsWith(".js "))
-            out.println("Content-type: " + "application/javascript");
+            contentType =  "application/javascript";
          else if (fileName.endsWith(".json "))
-            out.println("Content-type: " + "application/json");
+            contentType =  "application/json";
          else
-            out.println("Content-type: " + "text/plain");
+            contentType =  "text/plain";
          
+         out.println("Content-type: " + contentType);
          out.println("Server: Java HTTPServer");
          out.println("Date: " + new Date());
          out.println("\r\n");
-         
-         String st;
-         while ((st = br.readLine()) != null)
-            out.println(st);
-         br.close();
+         if (contentType.contains("image/")) {
+            // https://docs.oracle.com/javase/tutorial/2d/images/saveimage.html
+               // <BufferedImage bi = new BufferedIm(arg0);
+               // File outputfile = new File("saved.png");
+               // ImageIO.write(bi, "png", outputfile);>
+         } else {
+            String st;
+            while ((st = br.readLine()) != null)
+               out.println(st);
+            br.close();
+         }
       } catch (IOException e) {
          out.println("HTTP/1.1 404 Not Found");
          out.println("Content-type: " + "text/html");
