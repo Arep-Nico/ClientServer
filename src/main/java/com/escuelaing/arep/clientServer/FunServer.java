@@ -48,8 +48,6 @@ public class FunServer {
                 } else
                     num = Double.parseDouble(inputLine);
 
-                System.out.println("Math.sin(" + num + ")=" + Math.sin(num));
-
                 if (inputLine.startsWith("fun:")) {
                     if (inputLine.endsWith("sin"))
                         fun = "sin";
