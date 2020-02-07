@@ -1,6 +1,6 @@
-# Laboratorio Spark Web App
+# Laboratorio Http Server
 
-Este repositorio esta creadon en la base del enunciado [aqui](documents/EnunciadoTareaDiseñoConceptosBásicos.pdf)
+Este laboratorio consiste en desarrollar un servidor http con java 
 
 ### Prerequisitos
 
@@ -8,8 +8,7 @@ Se requiere maven y Java version 8 como minimo.
 
 ## Diseño
 
-La documentacion del Api de **LinkedList** y de **mean and standard** esta a continuacion [aqui](documents/Laboratorio_1_Arep.pdf).
-La documentacion de la arquitectura de la aplicacion web [aqui](documents/Laboratorio_2_Arep.pdf)
+La documentacion del Api de **HttpSreer** esta a continuacion [aqui](documents/Laboratorio_1_Arep.pdf).
 
 ## Running
  Para empaquetar el proyecto de Java 
@@ -19,7 +18,7 @@ La documentacion de la arquitectura de la aplicacion web [aqui](documents/Labora
  > mvn test 
  
  Para ejecutar el Api 
- > mvn exec:java -D "escuelaing.arep.meanStandard.App"
+ > mvn exec:java -D "com.escuelaing.arep.clientServer.HttpServer"
  
  Para generar la documentacion de Java
  > mvn javadoc:javadoc
@@ -33,7 +32,7 @@ La documentacion de la arquitectura de la aplicacion web [aqui](documents/Labora
 
 ## Versionamiento
 
-Para ver las versiones disponible, mire [realese version](https://github.com/Arep-Nico/SparkWebApp/releases).
+Para ver las versiones disponible, mire [realese version](https://github.com/Arep-Nico/ClientServer/releases).
 
 ## Autor
 
