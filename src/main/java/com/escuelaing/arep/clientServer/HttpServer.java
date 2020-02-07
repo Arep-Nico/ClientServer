@@ -90,7 +90,17 @@ public class HttpServer {
          if (contentType.contains("image/")) {
             HttpServer.serveImage(file, os, contentType.substring(contentType.indexOf("/")+1));
          } else {
-            out.println("HTTP/1.1 200 OK");
+            String outString = 
+               "HTTP/1.1 200 Ok\r\n" + 
+               "Content-type: text/html\r\n" +
+               "\r\n";
+            String st;
+            while ((st = br.readLine()) != null)
+               outString += st;
+            System.out.println(outString);
+            out.println(outString);
+            br.close();
+            /* out.println("HTTP/1.1 200 OK");
             out.println("Access-Control-Allow-Origin: *");
             out.println("Server: Java HTTP Server");
             out.println("Date: " + new Date());
@@ -101,22 +111,26 @@ public class HttpServer {
             String st;
             while ((st = br.readLine()) != null)
                out.println(st);
-            br.close();
+            br.close(); */
          }
       } catch (IOException e) {
-         out.println("HTTP/1.1 404 Not Found");
+         /* out.println("HTTP/1.1 404 Not Found");
          out.println("Content-type: " + "text/html");
-         out.println("\r\n");
-         String outputLine = "<!DOCTYPE html>" + 
-          "<html>" + 
-          "<head>" + 
-          "<meta charset=\"UTF-8\">" + 
-          "<title>File Not Found</title>\n" + 
-          "</head>" + 
-          "<body>" + 
-          "<center><h1>File Not Found</h1></center>" + 
-          "</body>" + 
-          "</html>";
+         out.println("\r\n"); */
+         String outputLine =
+            "HTTP/1.1 404 Not Found\r\n" + 
+            "Content-type: text/html\r\n" +
+            "\r\n" +
+            "<!DOCTYPE html>" + 
+            "<html>" + 
+            "<head>" + 
+            "<meta charset=\"UTF-8\">" + 
+            "<title>File Not Found</title>\n" + 
+            "</head>" + 
+            "<body>" + 
+            "<center><h1>File Not Found</h1></center>" + 
+            "</body>" + 
+            "</html>";
           out.println(outputLine);
       }
    }
