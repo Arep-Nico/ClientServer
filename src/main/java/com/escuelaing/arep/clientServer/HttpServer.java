@@ -92,34 +92,23 @@ public class HttpServer {
          } else {
             String outString = 
                "HTTP/1.1 200 Ok\r\n" + 
-               "Content-type: text/html\r\n" +
+               "Content-type: "+ contentType +"\r\n" +
+               "Server: Java HTTP Server\r\n" +
+               "Date: " + new Date() + "\r\n" +
                "\r\n";
             String st;
             while ((st = br.readLine()) != null)
                outString += st;
-            System.out.println(outString);
+            // System.out.println(outString);
             out.println(outString);
             br.close();
-            /* out.println("HTTP/1.1 200 OK");
-            out.println("Access-Control-Allow-Origin: *");
-            out.println("Server: Java HTTP Server");
-            out.println("Date: " + new Date());
-            out.println("Content-type: " + contentType);
-            out.println("\r\n");
-            out.println();
-            out.flush();
-            String st;
-            while ((st = br.readLine()) != null)
-               out.println(st);
-            br.close(); */
          }
       } catch (IOException e) {
-         /* out.println("HTTP/1.1 404 Not Found");
-         out.println("Content-type: " + "text/html");
-         out.println("\r\n"); */
          String outputLine =
-            "HTTP/1.1 404 Not Found\r\n" + 
-            "Content-type: text/html\r\n" +
+            "HTTP/1.1 404 Not Found\r\n" +
+            "Content-type: "+ contentType +"\r\n" +
+            "Server: Java HTTP Server\r\n" +
+            "Date: " + new Date() + "\r\n" +
             "\r\n" +
             "<!DOCTYPE html>" + 
             "<html>" + 
@@ -143,10 +132,17 @@ public class HttpServer {
 
          // Cabeceras con la info de la imágen
          DataOutputStream binaryOut = new DataOutputStream(outputStream);
-         binaryOut.writeBytes("HTTP/1.0 200 OK\r\n");
+         String outString = "HTTP/1.1 200 Ok\r\n" + 
+         "Content-type: image/"+ ext +"\r\n" +
+         "Server: Java HTTP Server\r\n" +
+         "Date: " + new Date() + "\r\n" +
+         "Content-Length: " + data.length + "\r\n" +
+         "\r\n";
+         /* binaryOut.writeBytes("HTTP/1.0 200 OK\r\n");
          binaryOut.writeBytes("Content-Type: image/"+ ext +"\r\n");
          binaryOut.writeBytes("Content-Length: " + data.length);
-         binaryOut.writeBytes("\r\n\r\n");
+         binaryOut.writeBytes("\r\n\r\n"); */
+         binaryOut.writeBytes(outString);
          binaryOut.write(data);
 
          binaryOut.close();
