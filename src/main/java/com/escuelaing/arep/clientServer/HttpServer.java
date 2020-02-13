@@ -8,7 +8,12 @@ public class HttpServer {
 
    public static final String USERPATH = System.getProperty("user.dir");
    public static final String SEPARATOR = System.getProperty("file.separator");
-
+   
+   /**
+    * inicia el servidor web desarrollado con la api de net y io de Java
+    * @param args
+    * @throws IOException
+    */
    public static void main(String[] args) throws IOException {
       while (true) {
          ServerSocket serverSocket = null;
@@ -57,6 +62,13 @@ public class HttpServer {
       }
    }
 
+   /**
+    * Clasifica el contenido de la peticion del cliente 
+    * @param fileName
+    * @param out
+    * @param outbs
+    * @param os
+    */
    private static void returnFile(String fileName, PrintWriter out, BufferedOutputStream outbs, OutputStream os) {
 
       String path = HttpServer.USERPATH + HttpServer.SEPARATOR + "src" + HttpServer.SEPARATOR + "main"
@@ -124,6 +136,13 @@ public class HttpServer {
       }
    }
 
+   /**
+    * Transforma la imagen solicitada para mandarla por un socket
+    * @param file
+    * @param outputStream
+    * @param ext
+    * @throws IOException
+    */
    private static void serveImage(File file, OutputStream outputStream, String ext) throws IOException {
          FileInputStream fis = new FileInputStream(file);
          byte[] data = new byte[(int) file.length()];
@@ -148,6 +167,10 @@ public class HttpServer {
          binaryOut.close();
    }
 
+   /**
+    * retorna un puerto disponible 
+    * @return
+    */
    private static int getPort() {
       if (System.getenv("PORT") != null) {
          return Integer.parseInt(System.getenv("PORT"));
