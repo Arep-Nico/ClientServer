@@ -2,8 +2,11 @@
 
 Este laboratorio consiste en desarrollar un servidor http con java 
 
-<!-- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://mighty-ocean-00668.herokuapp.com) -->
-[![Heroku](https://heroku-badge.herokuapp.com/?app=mighty-ocean-00668)]()
+[![Heroku](https://heroku-badge.herokuapp.com/?app=mighty-ocean-00668)](https://mighty-ocean-00668.herokuapp.com)
+[![CircleCI](https://circleci.com/gh/Arep-Nico/ClientServer/tree/master.svg?style=svg)](https://circleci.com/gh/Arep-Nico/ClientServer/tree/master)
+[![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven.plugins/maven-compiler-plugin/3.8.0)](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin/3.8.0)
+[![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven.plugins/maven-dependency-plugin/3.0.1)](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin/3.0.1)
+[![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven.plugins/maven-javadoc-plugin)](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin)
 
 ### Prerequisitos
 
@@ -11,7 +14,7 @@ Se requiere maven y Java version 8 como minimo.
 
 ## Diseño
 
-La documentacion del Api de **HttpSreer** esta a continuacion [aqui](documents/Laboratorio_1_Arep.pdf).
+La documentacion del Api de **HttpServer** esta a continuacion [aqui](documents/Laboratorio_3_Arep.pdf).
 
 ## Running
  Para empaquetar el proyecto de Java 
