@@ -50,7 +50,9 @@ public class HttpServer {
          }
          if (fileName.equals(" "))
             fileName = "index.html ";
-         if (!fileName.equals("/"))
+         if (fileName.equals("getDB "))
+            serverDB(out);
+         else if (!fileName.equals("/"))
             HttpServer.returnFile(fileName, out, outbs, ops);
          out.flush();
          out.close();
@@ -157,14 +159,38 @@ public class HttpServer {
          "Date: " + new Date() + "\r\n" +
          "Content-Length: " + data.length + "\r\n" +
          "\r\n";
-         /* binaryOut.writeBytes("HTTP/1.0 200 OK\r\n");
-         binaryOut.writeBytes("Content-Type: image/"+ ext +"\r\n");
-         binaryOut.writeBytes("Content-Length: " + data.length);
-         binaryOut.writeBytes("\r\n\r\n"); */
          binaryOut.writeBytes(outString);
          binaryOut.write(data);
 
          binaryOut.close();
+   }
+
+   /**
+    * 
+    * @param out
+    */
+   private static void serverDB(PrintWriter out) {
+      String res = DataBase.getData();
+      String outString = 
+         "HTTP/1.1 200 Ok\r\n" + 
+         "Content-type: " + "text/html" + "\r\n" + 
+         "Server: Java HTTP Server\r\n" + 
+         "Date: " + new Date() + "\r\n" + 
+         "\r\n" +
+         "<!DOCTYPE html>" + 
+            "<html>" + 
+            "<head>" + 
+            "<meta charset=\"UTF-8\">" + 
+            "<title>DataBase</title>\n" + 
+            "</head>" + 
+            "<body>" + 
+            "<center>" +
+            "<h1>Data DataBase</h1></br>" +
+            res + 
+            "</center>" + 
+            "</body>" + 
+            "</html>";
+         out.println(outString);
    }
 
    /**
