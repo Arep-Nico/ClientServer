@@ -16,6 +16,10 @@ Se requiere maven y Java version 8 como minimo.
 
 La documentacion del Api de **HttpServer** esta a continuacion [aqui](documents/Laboratorio_3_Arep.pdf).
 
+- DataBase: /getDB
+- archvos: /\<Nombre del archivo>
+
+
 ## Running
  Para empaquetar el proyecto de Java 
  > mvn package
